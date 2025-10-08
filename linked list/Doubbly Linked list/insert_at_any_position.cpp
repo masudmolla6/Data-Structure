@@ -59,9 +59,16 @@ void insert_at_any_position(Node* &head, int idx, int val){
         count++;
         temp=temp->next;
     }
+
+    if(temp == NULL) return;
+
     newNode->next=temp->next;
     newNode->pre=temp;
     temp->next=newNode;
+
+    if (newNode->next != NULL) {
+        newNode->next->pre = newNode;
+    }
 }
 
 void print_linked_list(Node* head){
