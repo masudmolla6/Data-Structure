@@ -51,15 +51,29 @@ int list_size(Node* head){
     
 }
 
-void insert_at_any_position(Node* &head, Node* &taill, int idx, int val){
+void insert_at_any_position(Node* &head, Node* &tail, int idx, int val){
     Node* newNode=new Node(val);
     Node* temp=head;
     int count=0;
     while (temp!=NULL && count < idx-1)
     {
-        /* code */
+        temp=temp->next;
+        count++;
     }
-    
+    // cout << temp->val << endl; 
+
+    if(temp==NULL) return;
+
+    newNode->pre=temp;
+    newNode->next=temp->next;
+    temp->next=newNode;
+
+    if(temp->next!=NULL){
+        temp->next->pre=newNode;
+    }
+    else{
+        tail=newNode;
+    }
 
 }
 
@@ -67,7 +81,7 @@ void print_linked_list(Node* head){
     Node* temp=head;
     if(head==NULL) return;
 
-    cout << temp->val << endl;
+    cout << temp->val << " ";
     print_linked_list(temp->next);
 
 }
@@ -85,7 +99,7 @@ int main() {
     cin >> idx >> val;
     int size=list_size(head);
 
-    if(idx>0 || idx>size){
+    if(idx<0 && idx>size){
         cout << "Please Check Your Index";
     }
     else if(idx==0){
@@ -95,7 +109,7 @@ int main() {
         insert_at_tail(head, tail, val);
     }
     else{
-
+        insert_at_any_position(head, tail, idx, val);
     }
 
     print_linked_list(head);
