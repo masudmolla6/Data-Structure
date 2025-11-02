@@ -64,12 +64,13 @@ void insert_at_any_position(Node* &head, Node* &tail, int idx, int val){
 
     if(temp==NULL) return;
 
-    newNode->pre=temp;
-    newNode->next=temp->next;
-    temp->next=newNode;
+    Node* nextNode = temp->next; 
 
-    if(temp->next!=NULL){
-        temp->next->pre=newNode;
+    newNode->next=nextNode;
+    newNode->pre=temp;
+    temp->next=newNode;
+    if(nextNode!=NULL){
+        nextNode->pre=newNode;
     }
     else{
         tail=newNode;
@@ -77,42 +78,54 @@ void insert_at_any_position(Node* &head, Node* &tail, int idx, int val){
 
 }
 
-void print_linked_list(Node* head){
+void print_linked_list_forward(Node* head){
+    Node* temp=head;
+    while(temp!=NULL){
+        cout<<temp->val<<" ";
+        temp=temp->next;
+    }
+}
+
+void print_linked_list_backword(Node* head){
     Node* temp=head;
     if(head==NULL) return;
 
+    print_linked_list_backword(temp->next);
     cout << temp->val << " ";
-    print_linked_list(temp->next);
 
 }
 
 int main() {
     Node* head=NULL;
     Node* tail=NULL;
-    int val;
-    while (cin >> val && val!=-1)
+    int q;
+    cin >> q;
+    while (q--)
     {
-        insert_at_tail(head, tail, val);
-    }
+        int val,idx;
+        cin >> idx >> val;
+        int size=list_size(head);
 
-    int idx;
-    cin >> idx >> val;
-    int size=list_size(head);
+        if(idx<0 || idx>size){
+            cout << "Invalid" << endl;
+        }
+        else{
+            if(idx==0){
+                insert_at_head(head, tail, val);
+            }
+            else if(idx==size){
+                insert_at_tail(head, tail, val);
+            }
+            else{
+                insert_at_any_position(head, tail, idx, val);
+            }
 
-    if(idx<0 || idx>size){
-        cout << "Please Check Your Index";
-    }
-    else if(idx==0){
-        insert_at_head(head, tail, val);
-    }
-    else if(idx==size){
-        insert_at_tail(head, tail, val);
-    }
-    else{
-        insert_at_any_position(head, tail, idx, val);
-    }
-
-    print_linked_list(head);
+            print_linked_list_forward(head);
+            cout << endl;
+            print_linked_list_backword(head);
+            cout << endl;
+            }
+        }
     
     return 0;
 }
