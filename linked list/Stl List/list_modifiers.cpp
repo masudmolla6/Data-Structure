@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    list<int>myList1={10,20,30, 40, 50};
+    list<int>myList1={10,20,30, 40, 50, 60, 70, 80};
     list<int>myList2;
     
     // list assign
@@ -34,6 +34,12 @@ int main() {
     // myList1.insert(specificIndex, l.begin(), l.end());
         
     // myList1.insert(specificIndex, {23,45,67});
+
+    // erase value in list
+    // myList1.erase(next(myList1.begin(), 2));
+
+    // multiple value earse
+    myList1.erase(next(myList1.begin(), 2), next(myList1.begin(), 5));
     
     for(auto val:myList1){
         cout << val << endl;
