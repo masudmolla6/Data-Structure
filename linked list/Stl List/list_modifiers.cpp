@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    list<int>myList1={10,20,30};
+    list<int>myList1={10,20,30, 40, 50};
     list<int>myList2;
     
     // list assign
@@ -19,6 +19,21 @@ int main() {
 
     // pop back
     // myList1.pop_back();
+
+    // list element index access
+    // auto specificIndex=next(myList1.begin(), 4);
+    // cout << *next(myList1.begin(), 2) <<  endl;
+
+    // Insert Value at specific  position
+    auto specificIndex=next(myList1.begin(), 3);
+
+    // myList1.insert(specificIndex, 944);
+
+    list<int> l={785, 45, 78, 45};
+        
+    // myList1.insert(specificIndex, l.begin(), l.end());
+        
+    // myList1.insert(specificIndex, {23,45,67});
     
     for(auto val:myList1){
         cout << val << endl;
