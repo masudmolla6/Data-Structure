@@ -39,11 +39,25 @@ int main() {
     // myList1.erase(next(myList1.begin(), 2));
 
     // multiple value earse
-    myList1.erase(next(myList1.begin(), 2), next(myList1.begin(), 5));
-    
-    for(auto val:myList1){
-        cout << val << endl;
+    // myList1.erase(next(myList1.begin(), 2), next(myList1.begin(), 5));
+
+    // replace value in list
+    // replace(myList1.begin(), myList1.end(),60,3445);
+
+    // find value from list
+    auto it=find(myList1.begin(), myList1.end(), 40);
+
+    if(it==myList1.end()){
+        cout << "not found";
     }
+    else{
+        cout << "found" << endl;
+    }
+
+    
+    // for(auto val:myList1){
+    //     cout << val << endl;
+    // }
 
     return 0;
 }
